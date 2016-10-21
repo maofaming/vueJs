@@ -1,0 +1,124 @@
+.page-select {
+    padding-left: 40px;
+    list-style-type: disc;
+}
+
+.page-select a{
+    color: #666;
+    -webkit-text-decoration-skip: objects;
+    background: 0 0;
+    cursor: pointer;
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+}
+
+.page-select a,
+.page-select a:active,
+.page-select a:hover {
+    outline: 0;
+    text-decoration: none;
+}
+
+.page-select-prev,
+.page-select-next,
+.page-select-jump,
+.page-select-item {
+    display: inline-block;
+    float: left;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+    font-family: Arial;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.page-select-prev,
+.page-select-next,
+.page-select-item {
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+}
+
+.page-select-prev:hover a,
+.page-select-next:hover a,
+.page-select-item:hover a {
+    color: #0099e5;
+}
+
+.page-select-prev:hover,
+.page-select-next:hover,
+.page-select-item:hover{
+    border-color: #0099e5;
+}
+
+.page-select-jump-icon {
+    font-size: 20px;
+    color: #cccccc;
+    position: relative;
+    top: -4px;
+}
+
+
+.page-select-icon {
+    display: inline-block;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.page-select-item-active {
+    background-color: #0099e5;
+    border-color: #0099e5;
+}
+
+.page-select-item-active:hover a,
+.page-select-item-active a {
+    color: #fff;
+}
+
+.page-select-disabled:hover {
+    border-color: #d9d9d9;
+}
+
+.page-select-disabled:hover a,
+.page-select-disabled a{
+    cursor: not-allowed;
+    color: #ccc;
+}
+
+.page-select-box .page-select-input {
+    height: 28px;
+    line-height: 28px;
+}
+
+.page-select-input .page-select-search {
+    width: 70px;
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    vertical-align: top;
+    height: 28px;
+    display: inline-block;
+}
+
+.page-select-input .page-input-number {
+    width: 50px;
+    height: 18px;
+    margin: 4px 10px;
+    border-width: 0;
+    outline: none;
+}

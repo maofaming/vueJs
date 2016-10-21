@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title>动图运营</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- select2 -->
+        <link href="css/select2.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/navbar-fixed-top.css" rel="stylesheet">
+
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/page.css" rel="stylesheet">
+        <link href="css/upload.css" rel="stylesheet">
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="lib/html5shiv.min.js"></script>
+            <script src="lib/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">动图运营</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">动图运营</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">GIF</a></li>
+                        <li><a href="#about">线上运营</a></li>
+                        <li><a href="#contact">举报管理</a></li>
+                    <!--<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                    </ul>
+                    </li>-->
+                    </ul>
+                <!--<ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="../">Fixed top <span class="sr-only">(current)</span></a></li>
+                </ul>-->
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="s2-example" id="select-color" >
+                <p>Selected: {{selected}}</p>
+                <p>
+                    <select class="form-control" multiple v-select="selected">
+                        <option v-for="o in options" :value="o.id">{{ o.text }}</option>
+                    </select>
+                </p>
+            </div>
+
+            <div id="vm-expand" class="tab-block" >
+                <div v-if="show" transition="expand">hello</div>
+                <button v-on:click="showExpand()">显示</button>
+                <button v-on:click="hideExpand()">隐藏</button>
+            </div>
+
+            <div id="vm-transition" class="tab-block">
+                <div v-if="show" transition="expand">hello</div>
+                <button @click="show = !show">Toggle</button>
+            </div>
+
+            <div id="vm-animation" class="tab-block">
+                <span v-show="show" transition="bounce">Look at me!</span>
+                <br>
+                <button @click="show = !show">Toggle</button>
+                <!--<div v-if="show" transition="expand">hello</div>
+                <button @click="show = !show">Toggle</button>-->
+            </div>
+
+            <div id="vm-animation-js" class="tab-block">
+                <span v-show="show" transition="fade">Look at me js!</span>
+                <br>
+                <button @click="show = !show">Toggle</button>
+                <!--<div v-if="show" transition="expand">hello</div>
+                <button @click="show = !show">Toggle</button>-->
+            </div>
+
+            <div id="vm-animation-test" class="tab-block">
+                <span v-show="show" transition="fade">测试animation!</span>
+                <br>
+                <button @click="show = !show">Toggle</button>
+                <!--<div v-if="show" transition="expand">hello</div>
+                <button @click="show = !show">Toggle</button>-->
+            </div>
+
+            <div id="vm-stagger" class="tab-block">
+                <input v-model="query">
+                <ul>
+                    <li v-for="item in list | filterBy query"
+                        transition="staggered"
+                        stagger="100">
+                        {{item.msg}}
+                    </li>
+                </ul>
+            </div>
+
+            <div id="example" class="tab-block">
+                <my-component></my-component>
+                <br>
+                <input v-model="parentMsg">
+                <br>
+                <child v-bind:my-message.sync="parentMsg"></child>
+            </div>
+
+            <!-- 子组件模板 -->
+            <template id="child-template">
+                <input v-model="msg">
+                <button v-on:click="notify">Dispatch Event</button>
+                <button v-on:click="handle">omit Event</button>
+            </template>
+
+            <!-- 父组件模板 -->
+            <div id="events-example">
+                <p>Messages: {{ messages | json }}</p>
+                <child ></child>
+            </div>
+
+            <template id="multiple-select">
+                <ul class="select-box">
+                    <li v-for="item in showList"
+                        class="multiple-item"
+                        v-bind:class="{ 'seleced': item.selected }"
+                        v-on:click="check($index)">{{item.name}}</li>
+                </ul>
+            </template>
+
+            <template id="sort-select">
+                <ul class="select-box">
+                    <li v-for="item in list"
+                        draggable="true"
+                        v-on:dragstart="drag($index)"
+                        v-on:dragenter="dragenter"
+                        v-on:dragover="dragover"
+                        v-on:dragleave="dragleave"
+                        v-on:drop="drop($index, $event)"
+                        class="sort-item">{{item}}</li>
+                </ul>
+            </template>
+
+            <!-- 父组件模板 -->
+            <div id="multiple-list">
+                <p>Messages: {{ multipleList }}</p>
+                <p>Messages: {{ allList }}</p>
+                <multiple-select v-bind:list.sync="multipleList" v-bind:all="allList" ></multiple-select>
+                <sort-select v-bind:list.sync="allList" ></sort-select>
+            </div>
+
+            <template id="page-select">
+                <div class="page-select-box">
+                    <ul class="page-select">
+                        <li title="上一页"
+                            class="page-select-prev"
+                            v-bind:class="{ 'page-select-disabled': pageData.prev }"
+                            v-on:click="prev">
+                            <a>
+                                <i class="page-select-icon page-select-prev-arrow-left"><</i>
+                            </a>
+                        </li>
+                        <template v-for="item in pageData.pageList">
+                            <li v-if="item.type === 'item'" title="{{item.num}}"
+                                class="page-select-item"
+                                v-bind:class="{ 'page-select-item-active': item.active }"
+                                v-on:click="select(item.num)">
+                                <a>{{item.num}}</a>
+                            </li>
+                            <li v-else class="page-select-jump">
+                                <a><i class="page-select-icon page-select-jump-icon">...</i></a>
+                            </li>
+                        </template>
+                        <li title="下一页"
+                            class="page-select-next"
+                            v-bind:class="{ 'page-select-disabled': pageData.next }"
+                            v-on:click="next">
+                            <a>
+                                <i class="page-select-icon page-select-prev-arrow-right">
+                                    >
+                                </i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="page-select-input">
+                        跳至
+                        <div class="page-select-search">
+                            <input type="text"
+                                   class="page-input-number"
+                                   v-model="inputPage"
+                                   v-on:keyup.enter="jump"
+                                   number>
+                        </div>
+                        页
+                    </div>
+                </div>
+            </template>
+
+            <!--<div class="page-select-box">
+                <ul class="page-select">
+                    <li title="上一页" class="page-select-prev page-select-disabled">
+                        <a>
+                            <i class="page-select-icon page-select-prev-arrow-left"><</i>
+                        </a>
+                    </li>
+                    <li title="第一页" class="page-select-item page-select-item-active">
+                        <a>1</a>
+                    </li>
+                    <li class="page-select-jump">
+                        <a><i class="page-select-icon page-select-jump-icon">...</i></a>
+                    </li>
+                    <li title="2" class="page-select-item">
+                        <a>2</a>
+                    </li>
+                    <li class="page-select-jump">
+                        <a><i class="page-select-icon page-select-jump-icon">...</i></a>
+                    </li>
+                    <li title="10" class="page-select-item">
+                        <a>10</a>
+                    </li>
+                    <li title="下一页" class="page-select-next">
+                        <a>
+                            <i class="page-select-icon page-select-prev-arrow-right">
+                                >
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="page-select-input">
+                    跳至
+                    <div class="page-select-search">
+                        <input type="text" class="page-input-number">
+                    </div>
+                    页
+                </div>
+            </div>-->
+
+
+
+            <!-- 父组件模板 -->
+            <div id="page-list-demo">
+                <p>current: {{ current }}
+                    <input type="text" v-model="current" placeholder="current" number>
+                </p>
+                <p>size: {{ size }}
+                    <input type="text" v-model="size" placeholder="size">
+                </p>
+                <page-select v-bind:current.sync="current" v-bind:size="size" ></page-select>
+            </div>
+
+            <template id="upload-file">
+                <div class="upload-file-box">
+                    <div class="preview-file">
+                        <div class="preview-list">
+                            <template v-for="data in preview">
+                                <div class="preview-image-item" v-if="data.type === 'image'">
+                                    <img class="preview-image-node" v-bind:src="data.url">
+                                    <div class="preview-image-logo">图片</div>
+                                    <div class="file-remove" v-on:click="remove($index)">删除</div>
+                                </div>
+                                <div class="preview-image-item" v-if="data.type === 'gif'">
+                                    <video loop="false" preload="none" controls
+                                           class="preview-image-node"  autoplay="false">
+                                        <source v-bind:src="data.url" type="video/mp4">
+                                    </video>
+                                    <div class="preview-image-logo">GIF</div>
+                                    <div class="file-remove" v-on:click="remove($index)">删除</div>
+                                </div>
+                                <div class="preview-image-item" v-if="data.type === 'video'">
+                                    <video loop="false" preload="none" controls
+                                           class="preview-image-node"  autoplay="false">
+                                        <source v-bind:src="data.url" type="video/mp4">
+                                    </video>
+                                    <div class="preview-image-logo">视频</div>
+                                    <div class="file-remove" v-on:click="remove($index)">删除</div>
+                                </div>
+                            </template>
+                        </div>
+                        <div class="progress" v-show="isLoading">
+                            <div class="progress-bar progress-bar-striped active"
+                                 role="progressbar"
+                                 aria-valuenow="45"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 v-bind:style="{width: progress}">
+                                {{progress}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-file-button" v-show="preview.length === 0">
+                        <form enctype="multipart/form-data">
+                            <label class="btn btn-default btn-file" v-for="item in list">
+                                {{item.title}}
+                                <input type="file"
+                                       accept="{{item.accept}}"
+                                       data-type="{{item.type}}"
+                                       v-on:change="change(item.type, $event)"
+                                       style="display: none;" >
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            </template>
+
+
+            <!-- 父组件模板 -->
+            <div id="upload-file-demo">
+                <upload-file v-bind:list="list" v-bind:preview.sync="preview"></upload-file>
+            </div>
+
+        </div> <!-- /container -->
+
+
+
+
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="lib/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+
+        <!-- select2 lib -->
+        <script src="lib/select2.full.js"></script>
+
+        <script src="lib/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+        <!-- vue.js lib -->
+        <script src="lib/vue.js"></script>
+
+        <script src="js/select.js"></script>
+
+    </body>
+</html>
